@@ -1,17 +1,5 @@
-import * as React from "react";
-import {
-  Image,
-  Center,
-  VStack,
-  Heading,
-  Button,
-  Box,
-  HStack,
-  Text,
-  Link,
-  FormControl,
-  Input,
-} from "native-base";
+import * as React from 'react';
+import { Center, VStack, Button, Box, Text, Link, FormControl, Input } from 'native-base';
 
 export default function RecoverPswdScreen({ navigation }: { navigation: any }) {
   return (
@@ -19,22 +7,18 @@ export default function RecoverPswdScreen({ navigation }: { navigation: any }) {
       <Box safeArea py="8" w="100%" maxW="290">
         <VStack mt="2" space={1}>
           <Link
-            onPress={() => navigation.navigate("Login")}
+            href="#l"
+            onPress={() => navigation.navigate('Login')}
             isUnderlined={false}
             _text={{
-              fontFamily: "inter",
-              fontSize: "sm",
-              color: "blue.500",
+              fontFamily: 'inter',
+              fontSize: 'sm',
+              color: 'blue.500',
             }}
           >
             Back to Login
           </Link>
-          <Text
-            fontFamily="inter"
-            fontWeight={800}
-            fontSize="3xl"
-            color="gray.100"
-          >
+          <Text fontFamily="inter" fontWeight={800} fontSize="3xl" color="gray.100">
             Forgot Password
           </Text>
           <Text fontFamily="inter" fontSize="sm" color="gray.400">
@@ -43,9 +27,9 @@ export default function RecoverPswdScreen({ navigation }: { navigation: any }) {
           <FormControl mt={4}>
             <FormControl.Label
               _text={{
-                fontFamily: "inter",
-                fontSize: "sm",
-                color: "gray.100",
+                fontFamily: 'inter',
+                fontSize: 'sm',
+                color: 'gray.100',
               }}
             >
               Email
@@ -63,12 +47,12 @@ export default function RecoverPswdScreen({ navigation }: { navigation: any }) {
             />
           </FormControl>
           <Button
-            _text={{ fontFamily: "inter", color: "coolGray.100" }}
+            _text={{ fontFamily: 'inter', color: 'coolGray.100' }}
             py={3}
             size="lg"
             mt="4"
-            _light={{ bg: "#2563eb", borderRadius: 10 }}
-            onPress={() => navigation.navigate("Login")}
+            _light={{ bg: '#2563eb', borderRadius: 10 }}
+            onPress={() => navigation.navigate('Login')}
           >
             Log in
           </Button>

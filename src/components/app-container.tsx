@@ -1,15 +1,15 @@
-import * as React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { NativeBaseProvider } from "native-base";
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { NativeBaseProvider } from 'native-base';
 
 type Props = {
   children: React.ReactNode;
 };
 
-export default function AppContainer(props: Props) {
+export default function AppContainer({ children }: Props) {
   return (
     <NavigationContainer>
-      <NativeBaseProvider>{props.children}</NativeBaseProvider>
+      <NativeBaseProvider>{children}</NativeBaseProvider>
     </NavigationContainer>
   );
 }

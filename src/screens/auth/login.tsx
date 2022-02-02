@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   Image,
   Center,
@@ -11,7 +11,7 @@ import {
   Link,
   Box,
   Stack,
-} from "native-base";
+} from 'native-base';
 
 export default function LoginScreen({ navigation }: { navigation: any }) {
   return (
@@ -21,7 +21,7 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
           <Image
             size="xl"
             source={{
-              uri: "https://res.cloudinary.com/glasnik/image/upload/v1642435474/media/adaptive-icon_upanud.png",
+              uri: 'https://res.cloudinary.com/glasnik/image/upload/v1642435474/media/adaptive-icon_upanud.png',
             }}
             alt="logo"
           />
@@ -31,12 +31,12 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
           <FormControl>
             <FormControl.Label
               _text={{
-                fontFamily: "inter",
-                fontSize: "sm",
-                color: "gray.100",
+                fontFamily: 'inter',
+                fontSize: 'sm',
+                color: 'gray.100',
               }}
             >
-              What's your email?
+              What&#39;s your email?
             </FormControl.Label>
             <Input
               py={3}
@@ -54,9 +54,9 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
             <FormControl.Label
               mt={4}
               _text={{
-                fontFamily: "inter",
-                fontSize: "sm",
-                color: "gray.100",
+                fontFamily: 'inter',
+                fontSize: 'sm',
+                color: 'gray.100',
               }}
             >
               Enter your password
@@ -75,12 +75,13 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
               placeholder="Type a password"
             />
             <Link
-              onPress={() => navigation.navigate("RecoverPassword")}
+              href="#rp"
+              onPress={() => navigation.navigate('RecoverPassword')}
               isUnderlined={false}
               _text={{
-                fontFamily: "inter",
-                fontSize: "sm",
-                color: "blue.500",
+                fontFamily: 'inter',
+                fontSize: 'sm',
+                color: 'blue.500',
               }}
               alignSelf="flex-end"
               mt="4"
@@ -89,13 +90,13 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
             </Link>
           </FormControl>
           <Button
-            _text={{ fontFamily: "inter", color: "coolGray.100" }}
+            _text={{ fontFamily: 'inter', color: 'coolGray.100' }}
             py={3}
             size="lg"
-            _light={{ bg: "#2563eb", borderRadius: 10 }}
+            _light={{ bg: '#2563eb', borderRadius: 10 }}
             mt="4"
             colorScheme="blue"
-            onPress={() => navigation.navigate("Me", { name: "amine" })}
+            onPress={() => navigation.navigate('Me', { name: 'amine' })}
           >
             Sign in
           </Button>
@@ -105,18 +106,19 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
               fontSize="sm"
               color="coolGray.300"
               _dark={{
-                color: "gray.300",
+                color: 'gray.300',
               }}
             >
-              Not registered yet.{" "}
+              Not registered yet.
             </Text>
             <Link
-              onPress={() => navigation.navigate("Signup")}
+              href="#su"
+              onPress={() => navigation.navigate('Signup')}
               isUnderlined={false}
               _text={{
-                fontFamily: "inter",
-                fontSize: "sm",
-                color: "blue.500",
+                fontFamily: 'inter',
+                fontSize: 'sm',
+                color: 'blue.500',
               }}
             >
               Sign Up

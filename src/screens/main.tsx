@@ -1,14 +1,5 @@
-import * as React from "react";
-import {
-  Image,
-  Center,
-  VStack,
-  Heading,
-  Button,
-  Box,
-  HStack,
-  Text,
-} from "native-base";
+import * as React from 'react';
+import { Center, VStack, Button, Box, Text } from 'native-base';
 
 export default function MainScreen({ navigation }: { navigation: any }) {
   return (
@@ -24,33 +15,27 @@ export default function MainScreen({ navigation }: { navigation: any }) {
           >
             Welcome to Glasnik
           </Text>
-          <Text
-            fontFamily="inter"
-            fontSize="sm"
-            textAlign="center"
-            color="gray.400"
-            mb={2}
-          >
+          <Text fontFamily="inter" fontSize="sm" textAlign="center" color="gray.400" mb={2}>
             Make Communities, Chat And Use Voice & Video Call For Free
           </Text>
           <Button
-            _text={{ fontFamily: "inter", color: "coolGray.100" }}
+            _text={{ fontFamily: 'inter', color: 'coolGray.100' }}
             py={3}
             size="lg"
             mt="4"
-            _light={{ bg: "#2563eb", borderRadius: 10 }}
-            onPress={() => navigation.navigate("Login")}
+            _light={{ bg: '#2563eb', borderRadius: 10 }}
+            onPress={() => navigation.navigate('Login')}
           >
             Log in
           </Button>
           <Button
-            _text={{ fontFamily: "inter", color: "coolGray.100" }}
+            _text={{ fontFamily: 'inter', color: 'coolGray.100' }}
             py={3}
             size="lg"
             mt="2"
             _light={{ borderRadius: 10 }}
             colorScheme="gray"
-            onPress={() => navigation.navigate("Signup")}
+            onPress={() => navigation.navigate('Signup')}
           >
             Sign Up
           </Button>

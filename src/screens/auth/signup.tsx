@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   Image,
   Center,
@@ -11,7 +11,7 @@ import {
   Link,
   Box,
   Stack,
-} from "native-base";
+} from 'native-base';
 
 export default function SignUpScreen({ navigation }: { navigation: any }) {
   return (
@@ -21,7 +21,7 @@ export default function SignUpScreen({ navigation }: { navigation: any }) {
           <Image
             size="xl"
             source={{
-              uri: "https://res.cloudinary.com/glasnik/image/upload/v1642435474/media/adaptive-icon_upanud.png",
+              uri: 'https://res.cloudinary.com/glasnik/image/upload/v1642435474/media/adaptive-icon_upanud.png',
             }}
             alt="logo"
           />
@@ -31,12 +31,12 @@ export default function SignUpScreen({ navigation }: { navigation: any }) {
           <FormControl>
             <FormControl.Label
               _text={{
-                fontFamily: "inter",
-                fontSize: "sm",
-                color: "gray.100",
+                fontFamily: 'inter',
+                fontSize: 'sm',
+                color: 'gray.100',
               }}
             >
-              What's your email?
+              What&#39;s your email?
             </FormControl.Label>
             <Input
               py={3}
@@ -54,9 +54,9 @@ export default function SignUpScreen({ navigation }: { navigation: any }) {
             <FormControl.Label
               mt={4}
               _text={{
-                fontFamily: "inter",
-                fontSize: "sm",
-                color: "gray.100",
+                fontFamily: 'inter',
+                fontSize: 'sm',
+                color: 'gray.100',
               }}
             >
               What should we call you ?
@@ -77,9 +77,9 @@ export default function SignUpScreen({ navigation }: { navigation: any }) {
             <FormControl.Label
               mt={4}
               _text={{
-                fontFamily: "inter",
-                fontSize: "sm",
-                color: "gray.100",
+                fontFamily: 'inter',
+                fontSize: 'sm',
+                color: 'gray.100',
               }}
             >
               Choose a nice password
@@ -99,13 +99,13 @@ export default function SignUpScreen({ navigation }: { navigation: any }) {
             />
           </FormControl>
           <Button
-            _text={{ fontFamily: "inter", color: "coolGray.100" }}
+            _text={{ fontFamily: 'inter', color: 'coolGray.100' }}
             py={3}
             size="lg"
-            _light={{ bg: "#2563eb", borderRadius: 10 }}
+            _light={{ bg: '#2563eb', borderRadius: 10 }}
             mt="6"
             colorScheme="blue"
-            onPress={() => navigation.navigate("About", { name: "amine" })}
+            onPress={() => navigation.navigate('About', { name: 'amine' })}
           >
             Sign up
           </Button>
@@ -115,19 +115,20 @@ export default function SignUpScreen({ navigation }: { navigation: any }) {
               fontSize="sm"
               color="coolGray.300"
               _dark={{
-                color: "gray.300",
+                color: 'gray.300',
               }}
             >
-              Not registered yet.{" "}
+              Not registered yet.
             </Text>
             <Link
+              href="#l"
               isUnderlined={false}
               _text={{
-                fontFamily: "inter",
-                fontSize: "sm",
-                color: "blue.500",
+                fontFamily: 'inter',
+                fontSize: 'sm',
+                color: 'blue.500',
               }}
-              onPress={() => navigation.navigate("Login")}
+              onPress={() => navigation.navigate('Login')}
             >
               Login
             </Link>

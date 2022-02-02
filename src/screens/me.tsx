@@ -1,10 +1,7 @@
-import React from "react";
-import { Center, Box, Button, Text } from "native-base";
+import React from 'react';
+import { Center, Box, Button, Text } from 'native-base';
 
-export default function MeScreen(
-  { navigation }: { navigation: any },
-  { name }: { name: string }
-) {
+export default function MeScreen({ navigation }: { navigation: any }, { name }: { name: string }) {
   return (
     <Center bg="#2F3136" px={3} flex={1}>
       <Box safeArea p="2" py="8" w="90%" maxW="290">
