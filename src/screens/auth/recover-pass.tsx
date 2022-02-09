@@ -1,7 +1,14 @@
 import * as React from 'react';
 import { Center, VStack, Button, Box, Text, Link, FormControl, Input } from 'native-base';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../../navigations/MainStackNavigator';
 
-export default function RecoverPswdScreen({ navigation }: { navigation: any }) {
+type RecoverPasswordScreenProp = NativeStackNavigationProp<RootStackParamList, 'RecoverPassword'>;
+
+export default function RecoverPswdScreen() {
+  const navigation = useNavigation<RecoverPasswordScreenProp>();
+
   return (
     <Center bg="#1D232A" px={3} flex={1}>
       <Box safeArea py="8" w="100%" maxW="290">

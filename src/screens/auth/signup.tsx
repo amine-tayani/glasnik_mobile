@@ -12,8 +12,15 @@ import {
   Box,
   Stack,
 } from 'native-base';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../navigations/MainStackNavigator';
 
-export default function SignUpScreen({ navigation }: { navigation: any }) {
+type SignupScreenProp = NativeStackNavigationProp<RootStackParamList, 'Signup'>;
+
+export default function SignUpScreen() {
+  const navigation = useNavigation<SignupScreenProp>();
+
   return (
     <Center bg="#1D232A" px={3} flex={1}>
       <Box safeArea p="2" py="8" w="90%" maxW="290">
@@ -105,7 +112,7 @@ export default function SignUpScreen({ navigation }: { navigation: any }) {
             _light={{ bg: '#2563eb', borderRadius: 10 }}
             mt="6"
             colorScheme="blue"
-            onPress={() => navigation.navigate('About', { name: 'amine' })}
+            onPress={() => navigation.navigate('Main')}
           >
             Sign up
           </Button>

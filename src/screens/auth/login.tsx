@@ -12,8 +12,15 @@ import {
   Box,
   Stack,
 } from 'native-base';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../navigations/MainStackNavigator';
 
-export default function LoginScreen({ navigation }: { navigation: any }) {
+type LoginScreenProp = NativeStackNavigationProp<RootStackParamList, 'Login'>;
+
+export default function LoginScreen() {
+  const navigation = useNavigation<LoginScreenProp>();
+
   return (
     <Center bg="#1D232A" px={3} flex={1}>
       <Box safeArea p="2" py="8" w="90%" maxW="290">
@@ -96,7 +103,7 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
             _light={{ bg: '#2563eb', borderRadius: 10 }}
             mt="4"
             colorScheme="blue"
-            onPress={() => navigation.navigate('Me', { name: 'amine' })}
+            onPress={() => navigation.navigate('Main')}
           >
             Sign in
           </Button>

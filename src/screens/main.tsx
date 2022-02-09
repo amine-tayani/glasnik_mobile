@@ -1,7 +1,14 @@
 import * as React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { Center, VStack, Button, Box, Text } from 'native-base';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../navigations/MainStackNavigator';
 
-export default function MainScreen({ navigation }: { navigation: any }) {
+type homeScreenProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
+
+export default function HomeScreen() {
+  const navigation = useNavigation<homeScreenProp>();
+
   return (
     <Center bg="#1D232A" px={3} flex={1}>
       <Box safeArea py="8" w="100%" maxW="290">

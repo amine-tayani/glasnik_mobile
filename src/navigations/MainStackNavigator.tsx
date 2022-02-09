@@ -1,11 +1,20 @@
+import * as React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import MainScreen from '../screens/main';
-import MeScreen from '../screens/me';
+import HomeScreen from '../screens/main';
+import MainScreen from '../screens/me';
 import LoginScreen from '../screens/auth/login';
 import SignUpScreen from '../screens/auth/signup';
 import RecoverPswdScreen from '../screens/auth/recover-pass';
 
-const Stack = createNativeStackNavigator();
+export type RootStackParamList = {
+  Main: undefined;
+  Home: undefined;
+  Login: undefined;
+  Signup: undefined;
+  RecoverPassword: undefined;
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function MainStackNavigator() {
   return (
@@ -15,8 +24,8 @@ export default function MainStackNavigator() {
         animation: 'slide_from_right',
       }}
     >
-      <Stack.Screen name="Home" component={MainScreen} />
-      <Stack.Screen name="Me" component={MeScreen} />
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Main" component={MainScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Signup" component={SignUpScreen} />
       <Stack.Screen name="RecoverPassword" component={RecoverPswdScreen} />
