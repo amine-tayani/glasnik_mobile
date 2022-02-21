@@ -14,12 +14,19 @@ import {
 } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useFormik } from 'formik';
 import { RootStackParamList } from '../../navigations/MainStackNavigator';
+import { signUpFormValidationSchema } from '../../utils/validateSchema';
 
 type SignupScreenProp = NativeStackNavigationProp<RootStackParamList, 'Signup'>;
 
 export default function SignUpScreen() {
   const navigation = useNavigation<SignupScreenProp>();
+  const { handleChange, handleSubmit, errors } = useFormik({
+    validationSchema: signUpFormValidationSchema,
+    initialValues: { email: '', username: '', password: '' },
+    onSubmit: (values) => console.log(values),
+  });
 
   return (
     <Center bg="#1D232A" px={3} flex={1}>
@@ -35,6 +42,11 @@ export default function SignUpScreen() {
         </Stack>
 
         <VStack mt="4">
+          {errors.email && (
+            <Text my={2} color="red.400">
+              {errors.email}
+            </Text>
+          )}
           <FormControl>
             <FormControl.Label
               _text={{
@@ -46,6 +58,7 @@ export default function SignUpScreen() {
               What&#39;s your email?
             </FormControl.Label>
             <Input
+              onChangeText={handleChange('email')}
               py={3}
               variant="unstyled"
               fontFamily="inter"
@@ -57,6 +70,11 @@ export default function SignUpScreen() {
               color="gray.100"
             />
           </FormControl>
+          {errors.username && (
+            <Text my={2} color="red.400">
+              {errors.username}
+            </Text>
+          )}
           <FormControl>
             <FormControl.Label
               mt={4}
@@ -69,6 +87,7 @@ export default function SignUpScreen() {
               What should we call you ?
             </FormControl.Label>
             <Input
+              onChangeText={handleChange('username')}
               py={3}
               variant="unstyled"
               fontFamily="inter"
@@ -81,6 +100,11 @@ export default function SignUpScreen() {
             />
           </FormControl>
           <FormControl>
+            {errors.password && (
+              <Text my={2} color="red.400">
+                {errors.password}
+              </Text>
+            )}
             <FormControl.Label
               mt={4}
               _text={{
@@ -91,8 +115,8 @@ export default function SignUpScreen() {
             >
               Choose a nice password
             </FormControl.Label>
-
             <Input
+              onChangeText={handleChange('password')}
               variant="unstyled"
               fontFamily="inter"
               fontSize="sm"
@@ -112,7 +136,7 @@ export default function SignUpScreen() {
             _light={{ bg: '#2563eb', borderRadius: 10 }}
             mt="6"
             colorScheme="blue"
-            onPress={() => navigation.navigate('Main')}
+            onPress={() => handleSubmit}
           >
             Sign up
           </Button>
