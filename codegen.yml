@@ -1,11 +1,12 @@
 overwrite: true
-schema: "https://glasnik-graphql-api.herokuapp.com/"
-documents: "src/**/*.graphql"
+schema: 'https://glasnik-graphql-api.herokuapp.com/'
+watch: true
+documents: 'src/**/*.graphql'
 generates:
   src/common/generated/graphql.tsx:
     plugins:
-      - "typescript"
-      - "typescript-operations"
-      - "typescript-react-apollo"
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
     config:
       withHooks: true

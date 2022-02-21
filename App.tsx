@@ -1,23 +1,24 @@
-import AppContainer from "./src/components/app-container";
-import * as Font from "expo-font";
-import { useEffect, useState } from "react";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import AppLoading from "expo-app-loading";
-import MainStackNavigator from "./src/navigations/MainStackNavigator";
+import * as Font from 'expo-font';
+import { useEffect, useState } from 'react';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import AppLoading from 'expo-app-loading';
+import MainStackNavigator from './src/navigations/MainStackNavigator';
+import AppContainer from './src/components/app-container';
 
 export default function App() {
   const [fontLoaded, setFontsLoaded] = useState(false);
 
   const client = new ApolloClient({
-    uri: "https://glasnik-graphql-api.herokuapp.com/",
+    uri: 'https://glasnik-graphql-api.herokuapp.com/',
     cache: new InMemoryCache(),
-    defaultOptions: { watchQuery: { fetchPolicy: "cache-and-network" } },
+    defaultOptions: { watchQuery: { fetchPolicy: 'cache-and-network' } },
   });
 
   const loadFonts = async () => {
     await Font.loadAsync({
       inter: {
-        uri: require("./assets/fonts/Inter.ttf"),
+        // eslint-disable-next-line global-require
+        uri: require('./assets/fonts/Inter.ttf'),
         display: Font.FontDisplay.FALLBACK,
       },
     });
@@ -36,7 +37,6 @@ export default function App() {
         </AppContainer>
       </ApolloProvider>
     );
-  } else {
-    return <AppLoading />;
   }
+  return <AppLoading />;
 }

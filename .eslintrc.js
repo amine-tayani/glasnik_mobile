@@ -31,5 +31,6 @@ module.exports = {
     'no-shadow': 'off',
     'react/prop-types': 'off',
     'linebreak-style': 'off',
+    'no-console': 'off',
   },
 };
