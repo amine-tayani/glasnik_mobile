@@ -14,9 +14,9 @@ import {
 } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useFormik } from 'formik';
-import { GestureResponderEvent } from 'react-native';
 import { useMutation } from '@apollo/client';
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { RootStackParamList } from '../../navigations/MainStackNavigator';
 import { signUpFormValidationSchema } from '../../utils/validateSchema';
 import {
@@ -27,32 +27,37 @@ import {
 
 type SignupScreenProp = NativeStackNavigationProp<RootStackParamList, 'Signup'>;
 
+type FormInput = {
+  email: string;
+  username: string;
+  password: string;
+};
+
 export default function SignUpScreen() {
   const navigation = useNavigation<SignupScreenProp>();
-
-  const { handleChange, handleSubmit, errors, values, isSubmitting } = useFormik({
-    validationSchema: signUpFormValidationSchema,
-    initialValues: { email: '', username: '', password: '' },
-    onSubmit: (values) => console.log(values),
-  });
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormInput>({ resolver: yupResolver(signUpFormValidationSchema), mode: 'onBlur' });
 
   const [CreateAccountMutation, { loading, error }] = useMutation<
     CreateAccountMutation,
     CreateAccountMutationVariables
   >(CreateAccountDocument, {
-    variables: { username: '', email: '', password: '' },
+    onCompleted: (data) => {
+      console.log(data);
+    },
   });
 
-  const handleSignupPress = (e: GestureResponderEvent) => {
-    e.preventDefault();
-    handleSubmit();
-    CreateAccountMutation({
-      variables: {
-        email: values.email,
-        username: values.username,
-        password: values.password,
-      },
-    });
+  const handleSignupPress = (data: FormInput) => {
+    try {
+      CreateAccountMutation({
+        variables: { email: data.email, username: data.username, password: data.password },
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -91,26 +96,29 @@ export default function SignUpScreen() {
             >
               What&#39;s your email?
             </FormControl.Label>
-            <Input
-              onChangeText={handleChange('email')}
-              keyboardType="email-address"
-              keyboardAppearance="dark"
-              py={3}
-              variant="unstyled"
-              fontFamily="inter"
-              fontSize="sm"
-              bg="#272D36"
-              placeholder="Type an email"
-              px={5}
-              borderRadius={10}
-              color="gray.100"
+            <Controller
+              control={control}
+              name="email"
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  keyboardType="email-address"
+                  keyboardAppearance="dark"
+                  py={3}
+                  variant="unstyled"
+                  fontFamily="inter"
+                  fontSize="sm"
+                  bg="#272D36"
+                  placeholder="Type an email"
+                  px={5}
+                  borderRadius={10}
+                  color="gray.100"
+                  value={value}
+                  onChangeText={(v) => onChange(v)}
+                />
+              )}
             />
+            {errors.email && <FormControl.ErrorMessage>{errors?.email}</FormControl.ErrorMessage>}
           </FormControl>
-          {errors.email && (
-            <Text my={1} color="red.500">
-              {errors.email}
-            </Text>
-          )}
 
           <FormControl>
             <FormControl.Label
@@ -123,24 +131,30 @@ export default function SignUpScreen() {
             >
               What should we call you ?
             </FormControl.Label>
-            <Input
-              onChangeText={handleChange('username')}
-              py={3}
-              variant="unstyled"
-              fontFamily="inter"
-              fontSize="sm"
-              bg="#272D36"
-              placeholder="Enter a username"
-              px={5}
-              borderRadius={10}
-              color="gray.100"
+            <Controller
+              control={control}
+              name="username"
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  py={3}
+                  variant="unstyled"
+                  fontFamily="inter"
+                  fontSize="sm"
+                  bg="#272D36"
+                  placeholder="Enter a username"
+                  px={5}
+                  borderRadius={10}
+                  color="gray.100"
+                  value={value}
+                  onChangeText={(v) => onChange(v)}
+                />
+              )}
             />
+            <FormControl.ErrorMessage>
+              {errors.username && <Text>{errors?.username}</Text>}
+            </FormControl.ErrorMessage>
           </FormControl>
-          {errors.username && (
-            <Text my={1} color="red.500">
-              {errors.username}
-            </Text>
-          )}
+
           <FormControl>
             <FormControl.Label
               mt={4}
@@ -152,34 +166,39 @@ export default function SignUpScreen() {
             >
               Choose a nice password
             </FormControl.Label>
-            <Input
-              onChangeText={handleChange('password')}
-              variant="unstyled"
-              fontFamily="inter"
-              fontSize="sm"
-              bg="#272D36"
-              px={5}
-              py={3}
-              borderRadius={10}
-              color="gray.100"
-              type="password"
-              placeholder="Type a password"
+            <Controller
+              control={control}
+              name="password"
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  variant="unstyled"
+                  fontFamily="inter"
+                  fontSize="sm"
+                  bg="#272D36"
+                  px={5}
+                  py={3}
+                  borderRadius={10}
+                  color="gray.100"
+                  type="password"
+                  placeholder="Type a password"
+                  value={value}
+                  onChangeText={(v) => onChange(v)}
+                />
+              )}
             />
+            <FormControl.ErrorMessage>
+              {errors.password && <Text>{errors?.password}</Text>}
+            </FormControl.ErrorMessage>
           </FormControl>
-          {errors.password && (
-            <Text my={1} color="red.500">
-              {errors.password}
-            </Text>
-          )}
+
           <Button
-            disabled={isSubmitting}
             _text={{ fontFamily: 'inter', color: 'coolGray.100' }}
             py={3}
             size="lg"
             _light={{ bg: '#2563eb', borderRadius: 10 }}
             mt="6"
             colorScheme="blue"
-            onPress={handleSignupPress}
+            onPress={handleSubmit(handleSignupPress)}
           >
             Sign up
           </Button>
